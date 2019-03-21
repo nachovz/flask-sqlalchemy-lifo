@@ -90,7 +90,7 @@ The last 2 steps **must** be executed after avery change done to the class model
   
 Now to get the information from the database we must use the *query* method from the model
 
-```
+```python
 items = Item.query.all()
 # All Item persisted in the database 
 

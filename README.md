@@ -60,26 +60,10 @@ Then update *app.py*:
   
 *app.py*
 ```python
-import os
-import sqlalchemy
 ...
-from flask_migrate import Migrate
-#Importing db and model(s)
 from models import db, Item
   
-app = Flask(__name__)
-##Setting the place for the db to run
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/change_this_name.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-#Initializing the db (after registering the Models)
-db.init_app(app)
-#migration engine
-migrate = Migrate(app, db)
-  
 ...
-  
-
-app.run(host=os.getenv('IP', '0.0.0.0'),port=int(os.getenv('PORT', 8080)))
 ```
 
 4. After your *app.py* **and** *models.py* files are set:
@@ -108,22 +92,7 @@ You can check the other functions in the flask_sqlalchemy [documentation](http:/
 If you need to list all the *Item* instances from the database you can update your *app.py* to:
 *app.py*
 ```python
-import os
-import sqlalchemy
 ...
-from flask_migrate import Migrate
-#Importing db and model(s)
-from models import db, Item
-  
-app = Flask(__name__)
-##Setting the place for the db to run
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/change_this_name.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-#Initializing the db (after registering the Models)
-db.init_app(app)
-#migration engine
-migrate = Migrate(app, db)
-  
   
   
 @app.route('/')
@@ -135,8 +104,6 @@ def list():
     
     return jsonify(response)
 
-
-
-app.run(host=os.getenv('IP', '0.0.0.0'),port=int(os.getenv('PORT', 8080)))
+...
 ```
   

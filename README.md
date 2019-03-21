@@ -33,7 +33,9 @@ migrate = Migrate(app, db)
 app.run(host=os.getenv('IP', '0.0.0.0'),port=int(os.getenv('PORT', 8080)))
 ```
 
-You'll get an error "undefined variable db", that's because ```db``` (which represents our **d**ata**b**ase object variable) needs to be initialized, we'll move the database logic to another file (logic decouple) ```models.py```, we will define our models in this file. The models represent the entities of our application which hold the data we want to persist.
+You'll get an error "undefined variable db", that's because ```db``` (which represents our **d**ata**b**ase object variable) needs to be initialized, we'll move the database logic to another file ([logic decouple](https://www.techopedia.com/definition/16907/decoupled-architecture)) ```models.py```. 
+
+We will define our models in this file. The models represent the entities of our application which hold the data we want to persist.
   
 *models.py*
 ```python

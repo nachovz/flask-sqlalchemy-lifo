@@ -29,7 +29,8 @@ db.init_app(app)
 migrate = Migrate(app, db)
   
 ...
-  
+
+app.run(host=os.getenv('IP', '0.0.0.0'),port=int(os.getenv('PORT', 8080)))
 ```
 
 You'll get an error "undefined variable db", that's because ```db``` (which represents our **d**ata**b**ase object variable) needs to be initialized, we'll move the database logic to another file (logic decouple) ```models.py```, we will define our models in this file. The models represent the entities of our application which hold the data we want to persist.
@@ -75,6 +76,8 @@ migrate = Migrate(app, db)
   
 ...
   
+
+app.run(host=os.getenv('IP', '0.0.0.0'),port=int(os.getenv('PORT', 8080)))
 ```
 
 4. After your *app.py* **and** *models.py* files are set:
@@ -101,7 +104,7 @@ You can check the other functions in the flask_sqlalchemy [documentation](http:/
 ### Example
 
 If you need to list all the *Item* instances from the database you can update your *app.py* to:
-
+*app.py*
 ```python
 import os
 import sqlalchemy
@@ -129,5 +132,9 @@ def list():
         response.append("%s" % i)
     
     return jsonify(response)
+
+
+
+app.run(host=os.getenv('IP', '0.0.0.0'),port=int(os.getenv('PORT', 8080)))
 ```
   

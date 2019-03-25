@@ -14,6 +14,7 @@ db.init_app(app)
 #migration engine
 migrate = Migrate(app, db)
 
+
 @app.route('/')
 def hello():
     items = Item.query.all()
@@ -22,14 +23,36 @@ def hello():
         response.append("%s" % i)
     
     return jsonify(response)
-    
+
+
+
+
+
+
+
+
+
+
+
+   
 @app.route('/add', methods=['POST'])
 def add():
     info = request.get_json() or {}
-    item = Item(text=info["text"])
+    item = Item(text=info["elephant"])
     db.session.add(item)
     db.session.commit()
     return jsonify({"response": "ok"})
+
+
+
+
+
+
+
+
+
+
+
 
 @app.route('/lifo-pop', methods=['GET'])
 def pop():
@@ -39,8 +62,16 @@ def pop():
         db.session.commit()
     return jsonify({ "deleted": "%s" % last })
 
+
+
+
+
+
+
+
+
 @app.route('/fifo-pop', methods=['GET'])
-def pop():
+def popFifo():
     last = Item.query.order_by(Item.created_on).first()
     if last is not None:
         db.session.delete(last)
